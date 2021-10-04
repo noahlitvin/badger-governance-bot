@@ -35,7 +35,7 @@ GovernanceTimelockContract.on("*", function (eventObject) {
     const parameterTypes = parameters.split(',');
     const decodedParameters = ethers.utils.AbiCoder.decode(parameterTypes, eventObject.data);
 
-    const message = `Transaction ${eventDescription}: ${functionName}${decodedParameters.length && "(" + decodedParameters.join(", ") + ")"}`
+    const message = `Transaction ${eventDescription}: ${functionName}${"(" + decodedParameters.join(", ") + ")"}`
     console.log(message)
     client.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(message);
 
