@@ -33,7 +33,7 @@ GovernanceTimelockContract.on("*", function (eventObject) {
     const parameters = signature.substring(signature.indexOf('(') + 1, signature.lastIndexOf(')'));
     const functionName = signature.split('(')[0];
     const parameterTypes = parameters.split(',');
-    const decodedParameters = ethers.utils.AbiCoder.decode(parameterTypes, eventObject.data);
+    const decodedParameters = ethers.utils.defaultAbiCoder.decode(parameterTypes, eventObject.data);
 
     const message = `Transaction ${eventDescription}: ${functionName}${"(" + decodedParameters.join(", ") + ")"}`
     console.log(message)
